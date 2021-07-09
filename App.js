@@ -1,21 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import GameScreen from "./app/src/screens/Game";
+import HomeScreen from "./app/src/screens/Home";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+  const [gameRunning, setGameRunning] = useState(false);
+
+  return gameRunning ? (
+    <GameScreen />
+  ) : (
+    <HomeScreen onPlayClick={() => setGameRunning(true)} />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
