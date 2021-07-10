@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Image } from "react-native";
 
 export default function MrBubble({ position, size }) {
   return (
@@ -7,15 +7,26 @@ export default function MrBubble({ position, size }) {
       style={{
         left: position[0] - size / 2,
         top: position[1] - size / 2,
-        alignSelf: "center",
         position: "absolute",
         width: size,
         height: size,
         backgroundColor: "#6cf",
         borderColor: "black",
-        borderWidth: 5,
+        borderWidth: 4,
         borderRadius: size / 2,
+        alignItems: "center",
+        justifyContent: "center",
       }}
-    ></View>
+    >
+      <Image
+        source={require("../../assets/happyFace.png")}
+        style={{
+          width: size / 2,
+          height: size / 2,
+          left: 1,
+          bottom: size / 6,
+        }}
+      />
+    </View>
   );
 }

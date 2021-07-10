@@ -7,8 +7,10 @@ import GameLoop from "../GameLoop";
 
 import MrBubble from "../components/MrBubble";
 import EnemyList from "../components/EnemyList";
+import RechargePackList from "../components/RechargePackList";
 
-export default function GameScreen() {
+export default function GameScreen({ onGameEnd }) {
+  const [gameRunning, setGameRunning] = useState(true);
   const { width, height } = useWindowDimensions();
   const engine = useRef(null);
 
@@ -32,9 +34,23 @@ export default function GameScreen() {
             moveCounter: Constants.ENEMY_SPEED_START,
             renderer: <EnemyList />,
           },
+          rechargePackList: {
+            elements: [],
+            rechargePackSpeed: Constants.ENEMY_SPEED_START,
+            moveCounter: Constants.ENEMY_SPEED_START,
+            renderer: <RechargePackList />,
+          },
         }}
         systems={[GameLoop]}
-        running={true}
+        running={gameRunning}
+        onEvent={(e) => {
+          switch (e) {
+            case "gameOver":
+              setGameRunning(false);
+              onGameEnd();
+              return;
+          }
+        }}
       />
     </SafeAreaView>
   );

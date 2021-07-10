@@ -2,7 +2,7 @@ import React from "react";
 import { Image, View } from "react-native";
 import Constants from "../Constants";
 
-export default function Enemy({ position }) {
+export default function RechargePack({ position }) {
   return (
     <View
       style={{
@@ -13,13 +13,11 @@ export default function Enemy({ position }) {
         height: Constants.ENEMY_SIZE,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "red",
+        backgroundColor: "yellow",
+        borderRadius: Constants.ENEMY_SIZE / 2,
+        borderColor: "orange",
+        borderWidth: 2,
       }}
-    >
-      <Image
-        source={require("../../assets/angryFace.png")}
-        style={{ width: Constants.ENEMY_SIZE, height: Constants.ENEMY_SIZE }}
-      />
-    </View>
+    />
   );
 }
